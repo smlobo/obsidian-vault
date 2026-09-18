@@ -1,0 +1,285 @@
+{
+  "main": {
+    "id": "19cdbfcb1489d4f5",
+    "type": "split",
+    "children": [
+      {
+        "id": "5c3e68c91db5114b",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4354f48f3e8694af",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "C++/const.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "const"
+            }
+          },
+          {
+            "id": "5c30146d3f1720e0",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "C++/Acronyms.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Acronyms"
+            }
+          },
+          {
+            "id": "ebd78ba8473d7b62",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "C++/Value Semantics.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Value Semantics"
+            }
+          },
+          {
+            "id": "63d473c06863400e",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "C++/Std functions.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Std functions"
+            }
+          },
+          {
+            "id": "1ddb886372e38a51",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "C++/Parallel Algorithms.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Parallel Algorithms"
+            }
+          },
+          {
+            "id": "c278a582b14a1035",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "C++/Algorithms.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "Algorithms"
+            }
+          }
+        ],
+        "currentTab": 3
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "f2fab405063b1276",
+    "type": "split",
+    "children": [
+      {
+        "id": "4e45f3d05e050be6",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "d117eb688a68f63c",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "7b64840b7e143c66",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "05982b2d53cd508d",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 224.3515625
+  },
+  "right": {
+    "id": "a089f5686f8c02a8",
+    "type": "split",
+    "children": [
+      {
+        "id": "8bc8501b464fc46c",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "2e113316b83a1dab",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "C++/Std functions.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks"
+            }
+          },
+          {
+            "id": "986c45f2035b3001",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "C++/Std functions.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links"
+            }
+          },
+          {
+            "id": "8caf26ce033fbb01",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "57a8f3219014f4c6",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "057f78408a40f926",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "C++/Std functions.md",
+                "followCursor": true,
+                "showSearch": true,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "63d473c06863400e",
+  "lastOpenFiles": [
+    "C++/Value Semantics.md",
+    "C++/Acronyms.md",
+    "C++/const.md",
+    "C++/Algorithms.md",
+    "C++/Parallel Algorithms.md",
+    "C++/Std functions.md",
+    "C++/Keywords.md",
+    "Algorithms/Concurrency Errors.md",
+    "C++/Slides",
+    "C++/Slides/Back-to-Basics-Value-Semantics-Klaus-Iglberger-CppCon-2022.pdf",
+    "Back-to-Basics-Value-Semantics-Klaus-Iglberger-CppCon-2022 1.pdf",
+    "C++/Parallel Data Structures.md",
+    "Algorithms",
+    "C++",
+    "Compilers/MLIR.md",
+    "Compilers/# MLIR.md",
+    "Compilers",
+    "Untitled.base",
+    "create a link.md",
+    "Welcome.md"
+  ]
+}
