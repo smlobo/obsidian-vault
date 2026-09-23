@@ -1,4 +1,7 @@
 {
   "promptDelete": false,
-  "focusNewTab": false
+  "focusNewTab": false,
+  "autoConvertHtml": true,
+  "newFileLocation": "current",
+  "attachmentFolderPath": "./"
 }

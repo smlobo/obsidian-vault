@@ -8,91 +8,63 @@
         "type": "tabs",
         "children": [
           {
-            "id": "4354f48f3e8694af",
+            "id": "a89ab4f1a06f214a",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "C++/const.md",
+                "file": "Compilers/MLIR.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "const"
+              "title": "MLIR"
             }
           },
           {
-            "id": "5c30146d3f1720e0",
+            "id": "f4ea93381c4a5efd",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "C++/Acronyms.md",
+                "file": "Compilers/AI Compiler Learning.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Acronyms"
+              "title": "AI Compiler Learning"
             }
           },
           {
-            "id": "ebd78ba8473d7b62",
+            "id": "7c09d586ad5018c6",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "C++/Value Semantics.md",
+                "file": "Pytorch/torch.randn().md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Value Semantics"
+              "title": "torch.randn()"
             }
           },
           {
-            "id": "63d473c06863400e",
+            "id": "6a03befd3695af58",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "C++/Std functions.md",
+                "file": "Pytorch/Basics.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Std functions"
-            }
-          },
-          {
-            "id": "1ddb886372e38a51",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "C++/Parallel Algorithms.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Parallel Algorithms"
-            }
-          },
-          {
-            "id": "c278a582b14a1035",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "C++/Algorithms.md",
-                "mode": "source",
-                "source": false
-              },
-              "icon": "lucide-file",
-              "title": "Algorithms"
+              "title": "Basics"
             }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -170,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "C++/Std functions.md",
+                "file": "Pytorch/torch.randn().md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -189,7 +161,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "C++/Std functions.md",
+                "file": "Pytorch/torch.randn().md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -232,7 +204,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "C++/Std functions.md",
+                "file": "Pytorch/torch.randn().md",
                 "followCursor": true,
                 "showSearch": true,
                 "searchQuery": ""
@@ -259,26 +231,41 @@
       "bases:Create new base": false
     }
   },
-  "active": "63d473c06863400e",
+  "active": "7c09d586ad5018c6",
   "lastOpenFiles": [
+    "Compilers/AI Compiler Learning.md",
+    "Pytorch/torch.randn().md",
+    "Compilers/MLIR.md",
+    "Pytorch/Basics.md",
+    "Interviews/Anaconda.md",
+    "Compilers/LLVM.md",
+    "Compilers/dominators.svg",
+    "Interviews/NetApp StorageGRID.md",
+    "Interviews",
+    "Pytorch",
+    "Compilers/cfg.svg",
+    "Compilers/loop.ll.callgraph.pdf",
+    "Compilers/cfg.loop.main.pdf",
+    "cfg.loop.main 1.pdf",
+    "cfg.loop.main.pdf",
     "C++/Value Semantics.md",
+    "Mojo/Overview.md",
+    "Language Comparisons/Dynamic Dispatch.md",
+    "Mojo",
+    "Language Comparisons/Template Generic Specialization.md",
+    "Python/Acronyms.md",
+    "Language Comparisons",
+    "C++/Std functions.md",
+    "Python",
     "C++/Acronyms.md",
     "C++/const.md",
     "C++/Algorithms.md",
     "C++/Parallel Algorithms.md",
-    "C++/Std functions.md",
     "C++/Keywords.md",
     "Algorithms/Concurrency Errors.md",
     "C++/Slides",
-    "C++/Slides/Back-to-Basics-Value-Semantics-Klaus-Iglberger-CppCon-2022.pdf",
-    "Back-to-Basics-Value-Semantics-Klaus-Iglberger-CppCon-2022 1.pdf",
     "C++/Parallel Data Structures.md",
-    "Algorithms",
-    "C++",
-    "Compilers/MLIR.md",
     "Compilers/# MLIR.md",
-    "Compilers",
-    "Untitled.base",
     "create a link.md",
     "Welcome.md"
   ]
