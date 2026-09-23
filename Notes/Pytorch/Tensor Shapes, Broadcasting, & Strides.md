@@ -40,20 +40,6 @@ probabilites.sum.shape == (2, 4, 4).sum(-1)
 	= (2, 4)
 ```
 
-# Notes
-* `matmul`
-	* common dimension goes away (matrix multiply)
-		* last of 1st, 1st of 2nd
-	* The last two dimensions are matrices; preceding dimensions are broadcast batch dimensions.
-* `transpose`
-	* `dim0` - first dim to be transposed
-	* `dim1` - 2nd dim to be transposed
-* `sum`
-	* `dim` (default `None`) - the int or (int, ...) of dim to be reduced
-* `stride()`
-	* gets the offset of an element in each dim
-	* `x.shape` = (1, 2, 3) => x.stride() = (6, 3, 1)
-
 # Further Questions
 - Change `T` from `4` to `7`. Which tensor shapes change?
 ```
