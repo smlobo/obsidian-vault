@@ -81,3 +81,7 @@ weights = 2 x 2 x 4 x 4 = 64
 		- T = 16 -> 1024
 	- the reason to avoid storing full weights tensors
 - This explicit code creates full scores, scaled scores, and attention-weights tensors; an optimized attention kernel can avoid keeping the full [T, T] matrix in memory
+- It’s called **scaled dot product attention** because of how it computes each attention _score_:
+	$\text{score}_{i,j}=\frac{q_i\cdot k_j}{\sqrt{d_k}}$
+	The dot product compares query token $i$ with key token $j$; dividing by $\sqrt{d_k}$ is the scaling. `Q @ K.transpose(-2, -1)` is a batched matrix multiplication that computes **all those individual dot products at once**.
+	The later `weights @ V` is another matrix multiplication, but it serves a different purpose: it forms a weighted sum of value vectors. So the name describes the rule used to _assign attention weights_, rather than every operation in the function.
