@@ -4,7 +4,7 @@
 	* it takes a captured PyTorch graph and decides how to execute it
 	* it optimizes the graph and generates kernels
 	* C++ for `cpu` work
-	* Triton for `gpu` work
+	* Triton for supported `gpu` work
 * The device target could be:
 	* `cuda`
 	* `mps` (Metal Performance Shaders)

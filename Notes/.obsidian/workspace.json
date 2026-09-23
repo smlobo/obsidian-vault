@@ -41,12 +41,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Pytorch/torch.randn().md",
+                "file": "Pytorch/Tensor Shapes, Broadcasting, & Strides.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "torch.randn()"
+              "title": "Tensor Shapes, Broadcasting, & Strides"
             }
           },
           {
@@ -142,7 +142,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Pytorch/torch.randn().md",
+                "file": "Pytorch/Tensor Shapes, Broadcasting, & Strides.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -161,7 +161,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Pytorch/torch.randn().md",
+                "file": "Pytorch/Tensor Shapes, Broadcasting, & Strides.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               },
@@ -204,7 +204,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Pytorch/torch.randn().md",
+                "file": "Pytorch/Tensor Shapes, Broadcasting, & Strides.md",
                 "followCursor": true,
                 "showSearch": true,
                 "searchQuery": ""
@@ -233,10 +233,10 @@
   },
   "active": "7c09d586ad5018c6",
   "lastOpenFiles": [
-    "Compilers/AI Compiler Learning.md",
-    "Pytorch/torch.randn().md",
-    "Compilers/MLIR.md",
     "Pytorch/Basics.md",
+    "Pytorch/Tensor Shapes, Broadcasting, & Strides.md",
+    "Compilers/AI Compiler Learning.md",
+    "Compilers/MLIR.md",
     "Interviews/Anaconda.md",
     "Compilers/LLVM.md",
     "Compilers/dominators.svg",

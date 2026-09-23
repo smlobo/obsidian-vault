@@ -44,10 +44,10 @@ probabilites.sum.shape == (2, 4, 4).sum(-1)
 * `matmul`
 	* common dimension goes away (matrix multiply)
 		* last of 1st, 1st of 2nd
-	* if no match, assume the 1st (nth?) as a batch dimension
+	* The last two dimensions are matrices; preceding dimensions are broadcast batch dimensions.
 * `transpose`
-	* `dim0` (default 0) - first dim to be transposed
-	* `dim1` (default 1) - 2nd dim to be transposed
+	* `dim0` - first dim to be transposed
+	* `dim1` - 2nd dim to be transposed
 * `sum`
 	* `dim` (default `None`) - the int or (int, ...) of dim to be reduced
 * `stride()`
@@ -77,12 +77,11 @@ weight.shape == (8, 16)  weight.stride() = (16, 1)
 bias.shape == (4)        bias.stride() = (1)
 projected.shape == (2, 4, 8) @ (8, 16) + (4)
 	= (2, 4, 16) + (4)
-	projected.stride() = (64, 16, 1) + (1)
 ```
 Broadcasting only works when the matching dimensions are equal _or_ 1.
 - Convert `x`, `weight`, and `bias` to `float16` before calculating `projected`. Print its dtype and compare its values with the `float32` result. Dtype affects both representation and compiler choices.
 ```
-probabilities.sum() does not change noticibly - [[1., 1., 1., 1.], 
+probabilities.sum(dim=-1) does not change noticibly - [[1., 1., 1., 1.], 
 	[1., 1., 1., 1]]
 but projected has a noticible delta
 ```
