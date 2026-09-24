@@ -1,0 +1,235 @@
+<svg viewBox="0 0 459 1628" xmlns="http://www.w3.org/2000/svg" width="459" height="1628">
+  <g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1624)">
+    <title>attention_graph_multiple_tokens_2x2x4x8</title>
+    <polygon fill="white" stroke="none" points="-4,4 -4,-1624 455,-1624 455,4 -4,4"/>
+    <!-- q -->
+    <g id="node1" class="node">
+      <title>q</title>
+      <path fill="AliceBlue" stroke="black" d="M12,-1153.5C12,-1153.5 145,-1153.5 145,-1153.5 151,-1153.5 157,-1159.5 157,-1165.5 157,-1165.5 157,-1337.5 157,-1337.5 157,-1343.5 151,-1349.5 145,-1349.5 145,-1349.5 12,-1349.5 12,-1349.5 6,-1349.5 0,-1343.5 0,-1337.5 0,-1337.5 0,-1165.5 0,-1165.5 0,-1159.5 6,-1153.5 12,-1153.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="78.5" y="-1332.2" font-family="Times,serif" font-size="14.00" fill="#000000">name=%q</text>
+      <polyline fill="none" stroke="black" points="0,-1325 157,-1325"/>
+      <text xml:space="preserve" text-anchor="middle" x="78.5" y="-1307.7" font-family="Times,serif" font-size="14.00" fill="#000000">op_code=placeholder</text>
+      <polyline fill="none" stroke="black" points="0,-1300.5 157,-1300.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="78.5" y="-1283.2" font-family="Times,serif" font-size="14.00" fill="#000000">target=q</text>
+      <polyline fill="none" stroke="black" points="0,-1276 157,-1276"/>
+      <text xml:space="preserve" text-anchor="middle" x="78.5" y="-1258.7" font-family="Times,serif" font-size="14.00" fill="#000000">num_users=1</text>
+      <polyline fill="none" stroke="black" points="0,-1251.5 157,-1251.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="78.5" y="-1234.2" font-family="Times,serif" font-size="14.00" fill="#000000">dtype=torch.float32</text>
+      <polyline fill="none" stroke="black" points="0,-1227 157,-1227"/>
+      <text xml:space="preserve" text-anchor="middle" x="78.5" y="-1209.7" font-family="Times,serif" font-size="14.00" fill="#000000">shape=(2, 2, s0, 8)</text>
+      <polyline fill="none" stroke="black" points="0,-1202.5 157,-1202.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="78.5" y="-1185.2" font-family="Times,serif" font-size="14.00" fill="#000000">requires_grad=False</text>
+      <polyline fill="none" stroke="black" points="0,-1178 157,-1178"/>
+      <text xml:space="preserve" text-anchor="middle" x="78.5" y="-1160.7" font-family="Times,serif" font-size="14.00" fill="#000000">stride=(16*s0, 8*s0, 8, 1)</text>
+    </g>
+    <!-- matmul -->
+    <g id="node5" class="node">
+      <title>matmul</title>
+      <path fill="#98f5ff" stroke="black" d="M79.88,-883.5C79.88,-883.5 275.12,-883.5 275.12,-883.5 281.12,-883.5 287.12,-889.5 287.12,-895.5 287.12,-895.5 287.12,-1067.5 287.12,-1067.5 287.12,-1073.5 281.12,-1079.5 275.12,-1079.5 275.12,-1079.5 79.88,-1079.5 79.88,-1079.5 73.88,-1079.5 67.88,-1073.5 67.88,-1067.5 67.88,-1067.5 67.88,-895.5 67.88,-895.5 67.88,-889.5 73.88,-883.5 79.88,-883.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-1062.2" font-family="Times,serif" font-size="14.00" fill="#000000">name=%matmul_scores</text>
+      <polyline fill="none" stroke="black" points="67.88,-1055 287.12,-1055"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-1037.7" font-family="Times,serif" font-size="14.00" fill="#000000">op_code=call_function</text>
+      <polyline fill="none" stroke="black" points="67.88,-1030.5 287.12,-1030.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-1013.2" font-family="Times,serif" font-size="14.00" fill="#000000">target=torch.ops.aten.matmul.default</text>
+      <polyline fill="none" stroke="black" points="67.88,-1006 287.12,-1006"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-988.7" font-family="Times,serif" font-size="14.00" fill="#000000">num_users=1</text>
+      <polyline fill="none" stroke="black" points="67.88,-981.5 287.12,-981.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-964.2" font-family="Times,serif" font-size="14.00" fill="#000000">dtype=torch.float32</text>
+      <polyline fill="none" stroke="black" points="67.88,-957 287.12,-957"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-939.7" font-family="Times,serif" font-size="14.00" fill="#000000">shape=(2, 2, s0, s0)</text>
+      <polyline fill="none" stroke="black" points="67.88,-932.5 287.12,-932.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-915.2" font-family="Times,serif" font-size="14.00" fill="#000000">requires_grad=False</text>
+      <polyline fill="none" stroke="black" points="67.88,-908 287.12,-908"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-890.7" font-family="Times,serif" font-size="14.00" fill="#000000">stride=(2*s0**2, s0**2, s0, 1)</text>
+    </g>
+    <!-- q&#45;&gt;matmul -->
+    <g id="edge1" class="edge">
+      <title>q-&gt;matmul</title>
+      <path fill="none" stroke="black" d="M114.38,-1153.37C121.92,-1132.96 129.92,-1111.31 137.59,-1090.53"/>
+      <polygon fill="black" stroke="black" points="140.87,-1091.76 141.05,-1081.17 134.3,-1089.34 140.87,-1091.76"/>
+    </g>
+    <!-- k -->
+    <g id="node2" class="node">
+      <title>k</title>
+      <path fill="AliceBlue" stroke="black" d="M211,-1423.5C211,-1423.5 344,-1423.5 344,-1423.5 350,-1423.5 356,-1429.5 356,-1435.5 356,-1435.5 356,-1607.5 356,-1607.5 356,-1613.5 350,-1619.5 344,-1619.5 344,-1619.5 211,-1619.5 211,-1619.5 205,-1619.5 199,-1613.5 199,-1607.5 199,-1607.5 199,-1435.5 199,-1435.5 199,-1429.5 205,-1423.5 211,-1423.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1602.2" font-family="Times,serif" font-size="14.00" fill="#000000">name=%k</text>
+      <polyline fill="none" stroke="black" points="199,-1595 356,-1595"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1577.7" font-family="Times,serif" font-size="14.00" fill="#000000">op_code=placeholder</text>
+      <polyline fill="none" stroke="black" points="199,-1570.5 356,-1570.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1553.2" font-family="Times,serif" font-size="14.00" fill="#000000">target=k</text>
+      <polyline fill="none" stroke="black" points="199,-1546 356,-1546"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1528.7" font-family="Times,serif" font-size="14.00" fill="#000000">num_users=1</text>
+      <polyline fill="none" stroke="black" points="199,-1521.5 356,-1521.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1504.2" font-family="Times,serif" font-size="14.00" fill="#000000">dtype=torch.float32</text>
+      <polyline fill="none" stroke="black" points="199,-1497 356,-1497"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1479.7" font-family="Times,serif" font-size="14.00" fill="#000000">shape=(2, 2, s0, 8)</text>
+      <polyline fill="none" stroke="black" points="199,-1472.5 356,-1472.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1455.2" font-family="Times,serif" font-size="14.00" fill="#000000">requires_grad=False</text>
+      <polyline fill="none" stroke="black" points="199,-1448 356,-1448"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1430.7" font-family="Times,serif" font-size="14.00" fill="#000000">stride=(16*s0, 8*s0, 8, 1)</text>
+    </g>
+    <!-- transpose -->
+    <g id="node4" class="node">
+      <title>transpose</title>
+      <path fill="#cdb5cd" stroke="black" d="M187.38,-1116.5C187.38,-1116.5 367.62,-1116.5 367.62,-1116.5 373.62,-1116.5 379.62,-1122.5 379.62,-1128.5 379.62,-1128.5 379.62,-1374.5 379.62,-1374.5 379.62,-1380.5 373.62,-1386.5 367.62,-1386.5 367.62,-1386.5 187.38,-1386.5 187.38,-1386.5 181.38,-1386.5 175.38,-1380.5 175.38,-1374.5 175.38,-1374.5 175.38,-1128.5 175.38,-1128.5 175.38,-1122.5 181.38,-1116.5 187.38,-1116.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1369.2" font-family="Times,serif" font-size="14.00" fill="#000000">name=%transpose</text>
+      <polyline fill="none" stroke="black" points="175.38,-1362 379.62,-1362"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1344.7" font-family="Times,serif" font-size="14.00" fill="#000000">op_code=call_function</text>
+      <polyline fill="none" stroke="black" points="175.38,-1337.5 379.62,-1337.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1320.2" font-family="Times,serif" font-size="14.00" fill="#000000">target=torch.ops.aten.transpose.int</text>
+      <polyline fill="none" stroke="black" points="175.38,-1313 379.62,-1313"/>
+      <text xml:space="preserve" text-anchor="start" x="183.38" y="-1295.7" font-family="Times,serif" font-size="14.00" fill="#000000">args=(</text>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1279.2" font-family="Times,serif" font-size="14.00" fill="#000000">-2,</text>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1262.7" font-family="Times,serif" font-size="14.00" fill="#000000">-1,</text>
+      <text xml:space="preserve" text-anchor="start" x="183.38" y="-1246.2" font-family="Times,serif" font-size="14.00" fill="#000000">)</text>
+      <polyline fill="none" stroke="black" points="175.38,-1239 379.62,-1239"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1221.7" font-family="Times,serif" font-size="14.00" fill="#000000">num_users=1</text>
+      <polyline fill="none" stroke="black" points="175.38,-1214.5 379.62,-1214.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1197.2" font-family="Times,serif" font-size="14.00" fill="#000000">dtype=torch.float32</text>
+      <polyline fill="none" stroke="black" points="175.38,-1190 379.62,-1190"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1172.7" font-family="Times,serif" font-size="14.00" fill="#000000">shape=(2, 2, 8, s0)</text>
+      <polyline fill="none" stroke="black" points="175.38,-1165.5 379.62,-1165.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1148.2" font-family="Times,serif" font-size="14.00" fill="#000000">requires_grad=False</text>
+      <polyline fill="none" stroke="black" points="175.38,-1141 379.62,-1141"/>
+      <text xml:space="preserve" text-anchor="middle" x="277.5" y="-1123.7" font-family="Times,serif" font-size="14.00" fill="#000000">stride=(16*s0, 8*s0, 1, 8)</text>
+    </g>
+    <!-- k&#45;&gt;transpose -->
+    <g id="edge2" class="edge">
+      <title>k-&gt;transpose</title>
+      <path fill="none" stroke="black" d="M277.5,-1423.37C277.5,-1415.03 277.5,-1406.5 277.5,-1397.89"/>
+      <polygon fill="black" stroke="black" points="281,-1398.07 277.5,-1388.07 274,-1398.07 281,-1398.07"/>
+    </g>
+    <!-- v -->
+    <g id="node3" class="node">
+      <title>v</title>
+      <path fill="AliceBlue" stroke="black" d="M306,-380.75C306,-380.75 439,-380.75 439,-380.75 445,-380.75 451,-386.75 451,-392.75 451,-392.75 451,-564.75 451,-564.75 451,-570.75 445,-576.75 439,-576.75 439,-576.75 306,-576.75 306,-576.75 300,-576.75 294,-570.75 294,-564.75 294,-564.75 294,-392.75 294,-392.75 294,-386.75 300,-380.75 306,-380.75"/>
+      <text xml:space="preserve" text-anchor="middle" x="372.5" y="-559.45" font-family="Times,serif" font-size="14.00" fill="#000000">name=%v</text>
+      <polyline fill="none" stroke="black" points="294,-552.25 451,-552.25"/>
+      <text xml:space="preserve" text-anchor="middle" x="372.5" y="-534.95" font-family="Times,serif" font-size="14.00" fill="#000000">op_code=placeholder</text>
+      <polyline fill="none" stroke="black" points="294,-527.75 451,-527.75"/>
+      <text xml:space="preserve" text-anchor="middle" x="372.5" y="-510.45" font-family="Times,serif" font-size="14.00" fill="#000000">target=v</text>
+      <polyline fill="none" stroke="black" points="294,-503.25 451,-503.25"/>
+      <text xml:space="preserve" text-anchor="middle" x="372.5" y="-485.95" font-family="Times,serif" font-size="14.00" fill="#000000">num_users=1</text>
+      <polyline fill="none" stroke="black" points="294,-478.75 451,-478.75"/>
+      <text xml:space="preserve" text-anchor="middle" x="372.5" y="-461.45" font-family="Times,serif" font-size="14.00" fill="#000000">dtype=torch.float32</text>
+      <polyline fill="none" stroke="black" points="294,-454.25 451,-454.25"/>
+      <text xml:space="preserve" text-anchor="middle" x="372.5" y="-436.95" font-family="Times,serif" font-size="14.00" fill="#000000">shape=(2, 2, s0, 8)</text>
+      <polyline fill="none" stroke="black" points="294,-429.75 451,-429.75"/>
+      <text xml:space="preserve" text-anchor="middle" x="372.5" y="-412.45" font-family="Times,serif" font-size="14.00" fill="#000000">requires_grad=False</text>
+      <polyline fill="none" stroke="black" points="294,-405.25 451,-405.25"/>
+      <text xml:space="preserve" text-anchor="middle" x="372.5" y="-387.95" font-family="Times,serif" font-size="14.00" fill="#000000">stride=(16*s0, 8*s0, 8, 1)</text>
+    </g>
+    <!-- matmul_1 -->
+    <g id="node8" class="node">
+      <title>matmul_1</title>
+      <path fill="#98f5ff" stroke="black" d="M176.88,-135.5C176.88,-135.5 372.12,-135.5 372.12,-135.5 378.12,-135.5 384.12,-141.5 384.12,-147.5 384.12,-147.5 384.12,-319.5 384.12,-319.5 384.12,-325.5 378.12,-331.5 372.12,-331.5 372.12,-331.5 176.88,-331.5 176.88,-331.5 170.88,-331.5 164.88,-325.5 164.88,-319.5 164.88,-319.5 164.88,-147.5 164.88,-147.5 164.88,-141.5 170.88,-135.5 176.88,-135.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="274.5" y="-314.2" font-family="Times,serif" font-size="14.00" fill="#000000">name=%matmul_weighted_values</text>
+      <polyline fill="none" stroke="black" points="164.88,-307 384.12,-307"/>
+      <text xml:space="preserve" text-anchor="middle" x="274.5" y="-289.7" font-family="Times,serif" font-size="14.00" fill="#000000">op_code=call_function</text>
+      <polyline fill="none" stroke="black" points="164.88,-282.5 384.12,-282.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="274.5" y="-265.2" font-family="Times,serif" font-size="14.00" fill="#000000">target=torch.ops.aten.matmul.default</text>
+      <polyline fill="none" stroke="black" points="164.88,-258 384.12,-258"/>
+      <text xml:space="preserve" text-anchor="middle" x="274.5" y="-240.7" font-family="Times,serif" font-size="14.00" fill="#000000">num_users=1</text>
+      <polyline fill="none" stroke="black" points="164.88,-233.5 384.12,-233.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="274.5" y="-216.2" font-family="Times,serif" font-size="14.00" fill="#000000">dtype=torch.float32</text>
+      <polyline fill="none" stroke="black" points="164.88,-209 384.12,-209"/>
+      <text xml:space="preserve" text-anchor="middle" x="274.5" y="-191.7" font-family="Times,serif" font-size="14.00" fill="#000000">shape=(2, 2, s0, 8)</text>
+      <polyline fill="none" stroke="black" points="164.88,-184.5 384.12,-184.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="274.5" y="-167.2" font-family="Times,serif" font-size="14.00" fill="#000000">requires_grad=False</text>
+      <polyline fill="none" stroke="black" points="164.88,-160 384.12,-160"/>
+      <text xml:space="preserve" text-anchor="middle" x="274.5" y="-142.7" font-family="Times,serif" font-size="14.00" fill="#000000">stride=(16*s0, 8*s0, 8, 1)</text>
+    </g>
+    <!-- v&#45;&gt;matmul_1 -->
+    <g id="edge3" class="edge">
+      <title>v-&gt;matmul_1</title>
+      <path fill="none" stroke="black" d="M333.35,-380.56C328.31,-368.05 323.12,-355.18 318.02,-342.51"/>
+      <polygon fill="black" stroke="black" points="321.3,-341.3 314.32,-333.33 314.81,-343.92 321.3,-341.3"/>
+    </g>
+    <!-- transpose&#45;&gt;matmul -->
+    <g id="edge4" class="edge">
+      <title>transpose-&gt;matmul</title>
+      <path fill="none" stroke="black" d="M227.35,-1116.11C224.13,-1107.48 220.91,-1098.85 217.75,-1090.36"/>
+      <polygon fill="black" stroke="black" points="221.07,-1089.27 214.3,-1081.12 214.52,-1091.71 221.07,-1089.27"/>
+    </g>
+    <!-- div -->
+    <g id="node6" class="node">
+      <title>div</title>
+      <path fill="LightSkyBlue" stroke="black" d="M93,-626C93,-626 262,-626 262,-626 268,-626 274,-632 274,-638 274,-638 274,-834.5 274,-834.5 274,-840.5 268,-846.5 262,-846.5 262,-846.5 93,-846.5 93,-846.5 87,-846.5 81,-840.5 81,-834.5 81,-834.5 81,-638 81,-638 81,-632 87,-626 93,-626"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-829.2" font-family="Times,serif" font-size="14.00" fill="#000000">name=%div</text>
+      <polyline fill="none" stroke="black" points="81,-822 274,-822"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-804.7" font-family="Times,serif" font-size="14.00" fill="#000000">op_code=call_function</text>
+      <polyline fill="none" stroke="black" points="81,-797.5 274,-797.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-780.2" font-family="Times,serif" font-size="14.00" fill="#000000">target=torch.ops.aten.div.Tensor</text>
+      <polyline fill="none" stroke="black" points="81,-773 274,-773"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-755.7" font-family="Times,serif" font-size="14.00" fill="#000000">args=(2.8284271247461903,)</text>
+      <polyline fill="none" stroke="black" points="81,-748.5 274,-748.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-731.2" font-family="Times,serif" font-size="14.00" fill="#000000">num_users=1</text>
+      <polyline fill="none" stroke="black" points="81,-724 274,-724"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-706.7" font-family="Times,serif" font-size="14.00" fill="#000000">dtype=torch.float32</text>
+      <polyline fill="none" stroke="black" points="81,-699.5 274,-699.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-682.2" font-family="Times,serif" font-size="14.00" fill="#000000">shape=(2, 2, s0, s0)</text>
+      <polyline fill="none" stroke="black" points="81,-675 274,-675"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-657.7" font-family="Times,serif" font-size="14.00" fill="#000000">requires_grad=False</text>
+      <polyline fill="none" stroke="black" points="81,-650.5 274,-650.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-633.2" font-family="Times,serif" font-size="14.00" fill="#000000">stride=(2*s0**2, s0**2, s0, 1)</text>
+    </g>
+    <!-- matmul&#45;&gt;div -->
+    <g id="edge5" class="edge">
+      <title>matmul-&gt;div</title>
+      <path fill="none" stroke="black" d="M177.5,-883.31C177.5,-875.03 177.5,-866.6 177.5,-858.16"/>
+      <polygon fill="black" stroke="black" points="181,-858.2 177.5,-848.2 174,-858.2 181,-858.2"/>
+    </g>
+    <!-- softmax -->
+    <g id="node7" class="node">
+      <title>softmax</title>
+      <path fill="Salmon" stroke="black" d="M90.75,-368.5C90.75,-368.5 264.25,-368.5 264.25,-368.5 270.25,-368.5 276.25,-374.5 276.25,-380.5 276.25,-380.5 276.25,-577 276.25,-577 276.25,-583 270.25,-589 264.25,-589 264.25,-589 90.75,-589 90.75,-589 84.75,-589 78.75,-583 78.75,-577 78.75,-577 78.75,-380.5 78.75,-380.5 78.75,-374.5 84.75,-368.5 90.75,-368.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-571.7" font-family="Times,serif" font-size="14.00" fill="#000000">name=%softmax</text>
+      <polyline fill="none" stroke="black" points="78.75,-564.5 276.25,-564.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-547.2" font-family="Times,serif" font-size="14.00" fill="#000000">op_code=call_function</text>
+      <polyline fill="none" stroke="black" points="78.75,-540 276.25,-540"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-522.7" font-family="Times,serif" font-size="14.00" fill="#000000">target=torch.ops.aten.softmax.int</text>
+      <polyline fill="none" stroke="black" points="78.75,-515.5 276.25,-515.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-498.2" font-family="Times,serif" font-size="14.00" fill="#000000">args=(-1,)</text>
+      <polyline fill="none" stroke="black" points="78.75,-491 276.25,-491"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-473.7" font-family="Times,serif" font-size="14.00" fill="#000000">num_users=1</text>
+      <polyline fill="none" stroke="black" points="78.75,-466.5 276.25,-466.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-449.2" font-family="Times,serif" font-size="14.00" fill="#000000">dtype=torch.float32</text>
+      <polyline fill="none" stroke="black" points="78.75,-442 276.25,-442"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-424.7" font-family="Times,serif" font-size="14.00" fill="#000000">shape=(2, 2, s0, s0)</text>
+      <polyline fill="none" stroke="black" points="78.75,-417.5 276.25,-417.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-400.2" font-family="Times,serif" font-size="14.00" fill="#000000">requires_grad=False</text>
+      <polyline fill="none" stroke="black" points="78.75,-393 276.25,-393"/>
+      <text xml:space="preserve" text-anchor="middle" x="177.5" y="-375.7" font-family="Times,serif" font-size="14.00" fill="#000000">stride=(2*s0**2, s0**2, s0, 1)</text>
+    </g>
+    <!-- div&#45;&gt;softmax -->
+    <g id="edge6" class="edge">
+      <title>div-&gt;softmax</title>
+      <path fill="none" stroke="black" d="M177.5,-625.78C177.5,-617.5 177.5,-609.1 177.5,-600.75"/>
+      <polygon fill="black" stroke="black" points="181,-600.91 177.5,-590.91 174,-600.91 181,-600.91"/>
+    </g>
+    <!-- softmax&#45;&gt;matmul_1 -->
+    <g id="edge7" class="edge">
+      <title>softmax-&gt;matmul_1</title>
+      <path fill="none" stroke="black" d="M221.18,-368.22C224.61,-359.62 228.07,-350.93 231.5,-342.33"/>
+      <polygon fill="black" stroke="black" points="234.64,-343.9 235.1,-333.31 228.14,-341.3 234.64,-343.9"/>
+    </g>
+    <!-- output -->
+    <g id="node9" class="node">
+      <title>output</title>
+      <path fill="PowderBlue" stroke="black" d="M234.25,-0.5C234.25,-0.5 314.75,-0.5 314.75,-0.5 320.75,-0.5 326.75,-6.5 326.75,-12.5 326.75,-12.5 326.75,-86.5 326.75,-86.5 326.75,-92.5 320.75,-98.5 314.75,-98.5 314.75,-98.5 234.25,-98.5 234.25,-98.5 228.25,-98.5 222.25,-92.5 222.25,-86.5 222.25,-86.5 222.25,-12.5 222.25,-12.5 222.25,-6.5 228.25,-0.5 234.25,-0.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="274.5" y="-81.2" font-family="Times,serif" font-size="14.00" fill="#000000">name=%output</text>
+      <polyline fill="none" stroke="black" points="222.25,-74 326.75,-74"/>
+      <text xml:space="preserve" text-anchor="middle" x="274.5" y="-56.7" font-family="Times,serif" font-size="14.00" fill="#000000">op_code=output</text>
+      <polyline fill="none" stroke="black" points="222.25,-49.5 326.75,-49.5"/>
+      <text xml:space="preserve" text-anchor="middle" x="274.5" y="-32.2" font-family="Times,serif" font-size="14.00" fill="#000000">target=output</text>
+      <polyline fill="none" stroke="black" points="222.25,-25 326.75,-25"/>
+      <text xml:space="preserve" text-anchor="middle" x="274.5" y="-7.7" font-family="Times,serif" font-size="14.00" fill="#000000">num_users=0</text>
+    </g>
+    <!-- matmul_1&#45;&gt;output -->
+    <g id="edge8" class="edge">
+      <title>matmul_1-&gt;output</title>
+      <path fill="none" stroke="black" d="M274.5,-135.11C274.5,-126.49 274.5,-117.95 274.5,-109.8"/>
+      <polygon fill="black" stroke="black" points="278,-110.08 274.5,-100.08 271,-110.08 278,-110.08"/>
+    </g>
+  </g>
+</svg>
