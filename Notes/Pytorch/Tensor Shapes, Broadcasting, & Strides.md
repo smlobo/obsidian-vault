@@ -1,5 +1,5 @@
 # Predict Shapes
-```
+```python
 import torch
 
 device = "mps" if torch.backends.mps.is_available() else "cpu"

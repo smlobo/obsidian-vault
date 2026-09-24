@@ -1,6 +1,6 @@
 **Build scaled dot product attention.** Use separate `q`, `k`, and `v` tensors of shape `[2, 2, 4, 8]`. Predict the shapes of `q @ k.transpose(-2, -1)`, `softmax(scores, dim=-1)`, and `probabilities @ v`. Divide scores by `sqrt(8)` before softmax. Then compare your final output with `torch.nn.functional.scaled_dot_product_attention(q, k, v, dropout_p=0.0)` using `torch.testing.assert_close`. The [PyTorch reference](https://docs.pytorch.org/docs/main/generated/torch.nn.functional.scaled_dot_product_attention.html) shows the same computation and explains why implementations can have small floating point differences.
 
-```
+```python
 import torch
 import math
 from utilities import force_cpu_requested, get_device, time_function
