@@ -3,5 +3,6 @@
   "focusNewTab": false,
   "autoConvertHtml": true,
   "newFileLocation": "current",
-  "attachmentFolderPath": "./"
+  "attachmentFolderPath": "./",
+  "alwaysUpdateLinks": true
 }
