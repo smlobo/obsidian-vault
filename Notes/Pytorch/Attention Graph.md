@@ -1,4 +1,4 @@
-# Manual Attention Graph
+![[core-aten-lowering-2x2x4x8.svg]]# Manual Attention Graph
 Inspect the **ATen graph** PyTorch captures from the following.
 ```python
 import math
@@ -83,3 +83,44 @@ Traceback (most recent call last): File "/Users/sheldon/repos/pytorch/attention-
 AssertionError: Guard failed: q.size()[2] <= 16
 ```
 ### The compiler idea is that **one graph can describe a family of shapes**, with explicit constraints on which members of that family are valid.
+
+# PyTorch lowering
+Lower the PyTorch graph towards Core ATen which takes operators like `aten.matmul` and `aten.softmax`, and lowers them to a smaller operator set intended for compiler backends. PyTorch provides `ExportedProgram.run_decompositions()` for this step.
+
+```python
+core = exported.run_decompositions(decomp_table=None)
+
+print("Original operators:")
+print([str(n.target) for n in exported.graph_module.graph.nodes
+       if n.op == "call_function"])
+
+print("Core ATen operators:")
+print([str(n.target) for n in core.graph_module.graph.nodes
+       if n.op == "call_function"])
+
+print(core.graph_module.print_readable(print_output=False))
+
+for inputs in ((q4, k4, v4), (q8, k8, v8)):
+    torch.testing.assert_close(core.module()(*inputs), model(*inputs))
+```
+
+## Graph
+![[core-aten-lowering-2x2x4x8.svg]]
+
+## Learnings
+
+1. Operators that changed:
+	1. `aten.transpose.int` -> `aten.permute.default`
+	2. `aten.softmax.int -> `aten.\_softmax.default`
+2. Operators that did not change:
+	1. `aten.div.Tensor` -> `aten.div.Tensor`
+3. Operators that expanded to several:
+	1. `aten.matmul.default` -> 
+		1. inputs expanded to: 
+			1. `aten.expand.default`
+			2. `aten.view.default`
+		2. `aten.bmm.default`
+		3. `aten.view.default`
+4. The symbolic token remains - `s0`
+5. Compiler backends prefer a smaller instruction set since it is simpler to implement operator conversion to a particular accelerator. This is the reason the frontend and backend of a traditional compiler are joined by a simpler Intermediate Representation (like LLVM IR).
+6. Lowering too early can hide the high level operation and make specialized optimization harder. So lowering boundaries need to be chosen carefully.
