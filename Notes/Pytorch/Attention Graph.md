@@ -1,4 +1,4 @@
-![[core-aten-lowering-2x2x4x8.svg]]# Manual Attention Graph
+# Manual Attention Graph
 Inspect the **ATen graph** PyTorch captures from the following.
 ```python
 import math
