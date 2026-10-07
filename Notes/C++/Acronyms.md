@@ -9,3 +9,5 @@
 	* Not allowed anymore; MT env
 * RVO : Return Value Optimization
 	* creates return values on the caller stack
+	* copy elison
+	* NRVO - Named ... (temporary vs named)

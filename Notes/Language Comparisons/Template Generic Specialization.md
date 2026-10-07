@@ -1,13 +1,13 @@
-||C++|Go|Java|Python|
-|---|---|---|---|---|
-|Generic mechanism|Templates|Generics|Generics|`TypeVar` / `Generic`|
-|Type checking|Compile time|Compile time|Compile time|Usually external (`mypy`, pyright, etc.)|
-|Generic specialization|Compile time|Compile time|Usually erased|None|
-|Generic bytecode/code per `T`|Yes|Often shape-based|No|**No**|
-|Runtime representation|Specialized|Shape/dictionary|Erased reference types|Dynamic Python objects|
-|Bytecode generation|LLVM IR → native|SSA → native|JVM bytecode|Python bytecode|
-|JIT normally involved|No|No|Yes, JVM|No (CPython)|
-|`T` affects generated code|Yes|Yes|Usually no|No|
+| Generics                      | C++              | Go                | Java                   | Python                                   |
+| ----------------------------- | ---------------- | ----------------- | ---------------------- | ---------------------------------------- |
+| Generic mechanism             | Templates        | Generics          | Generics               | `TypeVar` / `Generic`                    |
+| Type checking                 | Compile time     | Compile time      | Compile time           | Usually external (`mypy`, pyright, etc.) |
+| Generic specialization        | Compile time     | Compile time      | Usually erased         | None                                     |
+| Generic bytecode/code per `T` | Yes              | Often shape-based | No                     | **No**                                   |
+| Runtime representation        | Specialized      | Shape/dictionary  | Erased reference types | Dynamic Python objects                   |
+| Bytecode generation           | LLVM IR → native | SSA → native      | JVM bytecode           | Python bytecode                          |
+| JIT normally involved         | No               | No                | Yes, JVM               | No (CPython)                             |
+| `T` affects generated code    | Yes              | Yes               | Usually no             | No                                       |
 
 ```
    C++             Go             Java            Python

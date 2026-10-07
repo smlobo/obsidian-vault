@@ -17,7 +17,7 @@ void Fun() {
 ```
 // header file
 class Emotions {
-	static int mSmiltDuration; // out-of-class definition required
+	static int mSmileDuration; // out-of-class definition required
 };
 // cpp file
 int Emotions::mSmileDuration{4};
@@ -27,7 +27,7 @@ int Emotions::mSmileDuration{4};
 // header file
 class Emotions {
 public:
-	static void Smile; // inline or out-of-line definition
+	static void Smile(); // inline or out-of-line definition
 };
 // cpp file
 void Emotions::Smile() {
