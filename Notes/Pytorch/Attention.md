@@ -85,3 +85,5 @@ weights = 2 x 2 x 4 x 4 = 64
 	$\text{score}_{i,j}=\frac{q_i\cdot k_j}{\sqrt{d_k}}$
 	The dot product compares query token $i$ with key token $j$; dividing by $\sqrt{d_k}$ is the scaling. `Q @ K.transpose(-2, -1)` is a batched matrix multiplication that computes **all those individual dot products at once**.
 	The later `weights @ V` is another matrix multiplication, but it serves a different purpose: it forms a weighted sum of value vectors. So the name describes the rule used to _assign attention weights_, rather than every operation in the function.
+
+For masking and rectangular query/key lengths, see [[Causal Attention]].
