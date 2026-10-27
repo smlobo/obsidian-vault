@@ -21,16 +21,16 @@ The layer weights are initially random. Training can update them. **`q`, `k`, an
 
 `x` has shape `[B, T, D]`, where `B` and `T` are read from `x.shape` on each call. The model stores `num_heads=2` and calculates `head_dim=16//2=8` in `__init__`.
 
-| Step | Shape for `B=2`, `T=4` | Meaning |
-| --- | --- | --- |
-| Input `x` | `[2, 4, 8]` | Features for each token |
-| Each projected `q`, `k`, `v` | `[2, 4, 16]` | 16 new features per token |
-| Reshape | `[2, 4, 2, 8]` | Split 16 features into 2 heads |
-| Transpose axes 1 and 2 | `[2, 2, 4, 8]` | Put head before token for SDPA |
-| Causal SDPA result | `[2, 2, 4, 8]` | One result per head and query |
-| Transpose axes 1 and 2 | `[2, 4, 2, 8]` | Put tokens before heads again |
-| Reshape | `[2, 4, 16]` | Combine the two heads |
-| `out_proj` | `[2, 4, 8]` | One 8-feature output per token |
+| Step                         | Shape for `B=2`, `T=4` | Meaning                        |
+| ---------------------------- | ---------------------- | ------------------------------ |
+| Input `x`                    | `[2, 4, 8]`            | Features for each token        |
+| Each projected `q`, `k`, `v` | `[2, 4, 16]`           | 16 new features per token      |
+| Reshape                      | `[2, 4, 2, 8]`         | Split 16 features into 2 heads |
+| Transpose axes 1 and 2       | `[2, 2, 4, 8]`         | Put head before token for SDPA |
+| Causal SDPA result           | `[2, 2, 4, 8]`         | One result per head and query  |
+| Transpose axes 1 and 2       | `[2, 4, 2, 8]`         | Put tokens before heads again  |
+| Reshape                      | `[2, 4, 16]`           | Combine the two heads          |
+| `out_proj`                   | `[2, 4, 8]`            | One 8-feature output per token |
 
 `attention_heads.transpose(1, 2)` is equivalent here to `attention_heads.permute(0, 2, 1, 3)`. The axis *indices* remain the same when the batch size or token count changes. Only the *sizes* on those axes change. I checked a `[3, 7, 8]` input; the output was `[3, 7, 8]`.
 
@@ -73,6 +73,8 @@ So one projection layer stores:
 ## Compiler connection
 
 The model separates **parameters** (persistent weights and biases) from **activations** (`q`, `k`, `v`, attention output) computed for each input. `forward()` defines the computation whose shapes and operations a compiler captures. The SDPA call describes attention behavior; the chosen backend determines how its score calculation and masking are implemented.
+
+For a check that the manual and PyTorch attention paths also agree during backpropagation, see [[Self-Attention Gradient Comparison]].
 
 ## References
 
