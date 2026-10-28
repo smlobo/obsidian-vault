@@ -50,6 +50,8 @@ The script completed on CPU with all output, loss, and gradient assertions passi
 
 An attention implementation used for training must preserve the backward result as well as the forward result. This comparison supplies a small eager-mode reference before investigating graph capture, lowering, and generated code in the next exercises.
 
+Next exercise: [[Self-Attention Compile Guards]].
+
 ## References
 
 - [PyTorch autograd mechanics](https://docs.pytorch.org/docs/stable/notes/autograd)
