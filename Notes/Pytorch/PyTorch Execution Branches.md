@@ -20,7 +20,7 @@ Python PyTorch model
           └─ ONNX conversion → e.g. ONNX Runtime → CPU/GPU provider
 ```
 
-`torch.compile()` is an execution API. On a call, TorchDynamo captures an FX graph, checks guards, and sends the graph to a backend. Its default backend, **Inductor**, uses its own IR and generates CPU or GPU code; it does not need MLIR. For training, AOTAutograd also captures backward graphs. [PyTorch compiler overview](https://docs.pytorch.org/docs/main/user_guide/torch_compiler/torch.compiler.html).
+`torch.compile()` is an execution API. On the first invocation, TorchDynamo captures an FX graph, checks guards, and sends the graph to a backend. Its default backend, **Inductor**, uses its own IR and generates CPU or GPU code; it does not need MLIR. For training, AOTAutograd also captures backward graphs. [PyTorch compiler overview](https://docs.pytorch.org/docs/main/user_guide/torch_compiler/torch.compiler.html).
 
 **torch-mlir** is an import and lowering route into the MLIR ecosystem. The route relevant to your work takes a `torch.export.ExportedProgram`, imports it into the MLIR `torch` dialect, and can lower it to dialects such as Linalg or StableHLO. Another compiler or runtime then turns that IR into executable code. [torch-mlir importer](https://github.com/llvm/torch-mlir/blob/main/python/torch_mlir/fx.py), [architecture](https://github.com/llvm/torch-mlir/blob/main/docs/architecture.md).
 
@@ -56,6 +56,26 @@ Python sin_cos(x), where x.device == "mps"
   → registered MPS implementation (aten::sin → sin_out → sin_stub → sin_kernel_mps)
   → Metal work reads a and produces result b on MPS
 ```
+### `cuda`
+```
+Python sin_cos(x), where x.device == "cuda"
+ → torch.cos(x)
+ → aten::cos.default
+ → CUDA dispatch
+ → structured cos_out
+ → cos_stub(CUDA, TensorIterator)
+ → cos_kernel_cuda
+ → gpu_kernel launches CUDA elementwise kernel
+ → intermediate CUDA tensor a
+ → torch.sin(a)
+ → aten::sin.default
+ → CUDA dispatch
+ → structured sin_out
+ → sin_stub(CUDA, TensorIterator)
+ → sin_kernel_cuda
+ → gpu_kernel launches CUDA elementwise kernel
+ → result tensor b on CUDA
+```
 ## `torch.compile` with default inductor backend
 ### `cpu`
 ```
@@ -77,5 +97,19 @@ Python sin_cos(x)
   → wrapper allocates one MPS output and calls generated_kernel_0 once
   → output tensor b on MPS
 ```
-
+### `cuda`
+```
+Python: sin_cos(x)
+ → TorchDynamo intercepts the Python frame
+ → FX graph:
+  %a = aten.cos.default(x)
+  %b = aten.sin.default(%a)
+  return %b
+ → AOTDispatcher prepares the compiled forward graph
+ → Inductor lowers the pointwise graph
+ → Inductor fuses cos and sin into one CUDA Triton kernel
+ → generated wrapper allocates output b
+ → wrapper launches the Triton kernel
+ → result b on CUDA
+```
 
