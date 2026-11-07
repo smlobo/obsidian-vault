@@ -20,7 +20,8 @@ Python PyTorch model
           └─ ONNX conversion → e.g. ONNX Runtime → CPU/GPU provider
 ```
 
-`torch.compile()` is an execution API. On the first invocation, TorchDynamo captures an FX graph, checks guards, and sends the graph to a backend. Its default backend, **Inductor**, uses its own IR and generates CPU or GPU code; it does not need MLIR. For training, AOTAutograd also captures backward graphs. [PyTorch compiler overview](https://docs.pytorch.org/docs/main/user_guide/torch_compiler/torch.compiler.html).
+
+PyTorch`torch.compile()` is an execution API. On the first invocation, TorchDynamo captures an FX graph, checks guards, and sends the graph to a backend. Its default backend, **Inductor**, uses its own IR and generates CPU or GPU code; it does not need MLIR. For training, AOTAutograd also captures backward graphs. [PyTorch compiler overview](https://docs.pytorch.org/docs/main/user_guide/torch_compiler/torch.compiler.html).
 
 **torch-mlir** is an import and lowering route into the MLIR ecosystem. The route relevant to your work takes a `torch.export.ExportedProgram`, imports it into the MLIR `torch` dialect, and can lower it to dialects such as Linalg or StableHLO. Another compiler or runtime then turns that IR into executable code. [torch-mlir importer](https://github.com/llvm/torch-mlir/blob/main/python/torch_mlir/fx.py), [architecture](https://github.com/llvm/torch-mlir/blob/main/docs/architecture.md).
 

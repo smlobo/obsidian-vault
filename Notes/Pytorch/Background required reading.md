@@ -1,0 +1,8 @@
+- [PyTorch’s compiler programming model](https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/compile/programming_model.html) 
+- [PyTorch Export IR specification](https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/export/ir_spec.html)
+- [PyTorch export tutorial](https://docs.pytorch.org/tutorials/intermediate/torch_export_tutorial.html) $checkmark$
+- [AOTInductor API](https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/torch.compiler_aot_inductor.html)
+- [PyTorch ATen docs](https://docs.pytorch.org/cppdocs/api/aten/index.html)
+- [PyTorch FX docs](https://docs.pytorch.org/docs/2.15/fx.html)
+- [Export’s loop behavior](https://docs.pytorch.org/docs/2.15/user_guide/torch_compiler/export/programming_model.html)
+- 

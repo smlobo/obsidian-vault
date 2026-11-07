@@ -11,6 +11,7 @@
 		- E(mother) - E(father) $\approx$ E(woman) - E(man) 
 		- E(daughter) - E(son) $\approx$ E(woman) - E(man)
 	- In addition to embedding, encodes the position in the context
+	- ![[Embedding.png]]
 - Several layers of:
 	- Attention
 		- Query:
@@ -27,6 +28,9 @@
 		- Complete formula for `Attention` block output:
 			- $A=\operatorname{softmax}\left(\frac{QK^\top}{\sqrt{d_k}}+M\right)$
 			- $Z=AV$
+		- ![[AttentionPattern.png]]
+		- ![[AttentionHead.png]]
+		- ![[MultiHeadAttention.png]]
 	- Multi Layer Perceptron
 		- (Feed Forward)
 		- Steps:
@@ -34,11 +38,14 @@
 				- $W\uparrow$.$\vec{E_n}$ + $\vec{B_n}\uparrow$
 			- Non linear function -> Rectified Linear Unit
 				- sets -ve values to 0
-				- This loinear to non-linear is called a `neuron`
+				- This linear to non-linear is called a `neuron`
 			- Linear (Down)
 				- $W\downarrow$.$\square$ + $\vec{B_n}\downarrow$
+		- ![[MLP.png]]
+		- ![[MLP-All.png]]
 	- Note:
 		- **the same MLP weights act on each token independently**, while attention mixes information between tokens
+	- ![[Layers.png]]
 - Matmul the last vector of the output to Unembedding Matrix $W_u$
 	- Inference:
 		- the raw numbers in the final vector are called `logits`
@@ -72,6 +79,12 @@
 | Down-projection               | (12,288 d_embed * 49,152 (4 x 12,288) n_neurons + 12,288 n_neuron_bias) \* 96 n_layers = 58B |
 | Unembedding $W_u$             | 50,257 n_vocab * 12,288 d_embed = 617M                                                       |
 |                               |                                                                                              |
+![[GPT3-We.png]]
+
+![[GPT3-MultiHeadAttention.png]]
+
+![[GPT3-MLP.png]]
+
 ## Softmax
 - distribution to positive numbers that sum to 1.00
 - Steps
