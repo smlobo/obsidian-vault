@@ -38,6 +38,24 @@ For each token independently, $\operatorname{MLP}(x)=\operatorname{GELU}(xW_{\te
 
 - $d_{\text{model}}=768$, 12 layers, 12 attention heads, $d_{\text{head}}=64$, context limit 1,024 tokens. Other GPT-2 sizes have different widths and depths.
 
+| Parameter group | Shape / calculation | Approximate count (millions) |
+| --- | --- | ---: |
+| Token embedding / tied output | $50{,}257\times768$ | 38.60M |
+| Position embedding (`wpe`) | $1{,}024\times768$ | 0.79M |
+| Q projection, all layers | $12\times(768\times768)$ | 7.08M |
+| K projection, all layers | Same as Q | 7.08M |
+| V projection, all layers | Same as Q | 7.08M |
+| Attention output projection, all layers | Same as Q | 7.08M |
+| MLP up projection, all layers | $12\times(768\times3{,}072)$ | 28.31M |
+| MLP down projection, all layers | $12\times(3{,}072\times768)$ | 28.31M |
+| **Subtotal shown** | Excludes biases and normalization parameters | **124.32M** |
+
+The table counts the token embedding and tied output matrix once, and includes the learned position embedding (`wpe`). It shows Q/K/V separately even though GPT-2 computes them with one fused projection.
+
+### Why is `model.safetensors` about 548 MB?
+
+GPT-2 small has about 124.44 million learned parameters when biases and normalization weights are included. Stored as float32, these values take about $124.44\text{M}\times4\approx497.8$ MB. The Hugging Face `model.safetensors` file is 548.1 MB, about 50.3 MB larger. That gap closely matches 12 saved causal attention-mask buffers, one per layer, each with $1{,}024\times1{,}024$ float32 values: $12\times1{,}024\times1{,}024\times4\approx50.3$ MB. These masks are fixed buffers that enforce causal attention, not learned parameters. The remaining small difference is file metadata. The file size therefore includes the checkpointed masks as well as model weights. [GPT-2 checkpoint files](https://huggingface.co/openai-community/gpt2/tree/main)
+
 ## GPT-3 175B structure
 
 - **Announced:** May 28, 2020, with the GPT-3 paper. GPT-3-backed API access began in private beta on June 11, 2020; the weights were not publicly released.
@@ -68,17 +86,17 @@ flowchart TB
 ```
 
 The unembedding is shown as a separate *operation*. Under the weight-tying assumption used in the parameter table, it reads the token embedding matrix transposed rather than adding another set of trainable weights. During training, unembedding is applied at **every** position; the diagram shows the last position used for generation.
-
-| Parameter group | Shape / calculation | Approximate count |
-| --- | --- | ---: |
-| Token embedding / tied output | $50{,}257\times12{,}288$ | 0.618B |
-| Q projection, all layers | $96\times(12{,}288\times12{,}288)$ | 14.50B |
-| K projection, all layers | Same as Q | 14.50B |
-| V projection, all layers | Same as Q | 14.50B |
-| Attention output projection, all layers | Same as Q | 14.50B |
-| MLP up projection, all layers | $96\times(12{,}288\times49{,}152)$ | 57.98B |
-| MLP down projection, all layers | $96\times(49{,}152\times12{,}288)$ | 57.98B |
-| **Subtotal shown** | Excludes small bias, normalization, and position-embedding terms | **174.56B** |
+	
+| Parameter group                         | Shape / calculation                                              | Approximate count |
+| --------------------------------------- | ---------------------------------------------------------------- | ----------------: |
+| Token embedding / tied output           | $50{,}257\times12{,}288$                                         |            0.618B |
+| Q projection, all layers                | $96\times(12{,}288\times12{,}288)$                               |            14.50B |
+| K projection, all layers                | Same as Q                                                        |            14.50B |
+| V projection, all layers                | Same as Q                                                        |            14.50B |
+| Attention output projection, all layers | Same as Q                                                        |            14.50B |
+| MLP up projection, all layers           | $96\times(12{,}288\times49{,}152)$                               |            57.98B |
+| MLP down projection, all layers         | $96\times(49{,}152\times12{,}288)$                               |            57.98B |
+| **Subtotal shown**                      | Excludes small bias, normalization, and position-embedding terms |       **174.56B** |
 
 The table is a **parameter count**, not the number of physical matrices in a particular implementation. Each Q/K/V row represents the projections across all heads and layers. The MLP up-projection bias has $49{,}152$ entries per layer; the down-projection bias has $12{,}288$.
 
@@ -124,49 +142,82 @@ Llama 3 8B is a decoder-only transformer with downloadable weights under Meta's 
 
 The K/V width is $8\times128=1{,}024$; the query/output width is $32\times128=4{,}096$. RoPE itself adds no learned weights.
 
-## Qwen3-8B structure (open-source comparison)
+## Qwen3-0.6B-Base structure
 
-**Released:** April 29, 2025, under the Apache 2.0 license.
+Qwen3-0.6B-Base is a **dense decoder-only transformer**. The configuration used by `qwen3-pytorch.py` has 28 transformer blocks, a 1,024-wide hidden state, and a 151,936-slot vocabulary. Its 16 query heads use 8 key/value heads, so each K/V head is shared by two query heads.
 
-Qwen3-8B is another **dense decoder-only transformer**, so it is a direct architectural comparison with Llama 3 8B. The 8B name is rounded: the model card reports about 8.2 billion parameters.
+| Feature | Qwen3-0.6B-Base |
+| --- | ---: |
+| Transformer blocks | 28 |
+| Model width $d_{\text{model}}$ | 1,024 |
+| Vocabulary slots in embedding matrix | 151,936 |
+| Maximum configured context | 32,768 tokens |
+| Query heads | 16 |
+| Key/value heads | 8 each |
+| Head dimension | 128 |
+| MLP hidden width | 3,072 |
+| Position method | RoPE |
+| Main normalization | RMSNorm, plus QK-Norm |
+| MLP | SwiGLU |
+| Token embedding / output weights | Tied in the model configuration |
 
-| Feature | Llama 3 8B | Qwen3-8B |
-| --- | ---: | ---: |
-| Transformer blocks | 32 | 36 |
-| Model width $d_{\text{model}}$ | 4,096 | 4,096 |
-| Vocabulary slots in embedding matrix | 128,256 | 151,936 |
-| Native context length | 8,192 tokens | 32,768 tokens |
-| Extended context | — | 131,072 tokens with YaRN RoPE scaling |
-| Query heads | 32 | 32 |
-| Key/value heads | 8 each | 8 each |
-| Head width | 128 | 128 |
-| MLP hidden width | 14,336 | 12,288 |
-| Position method | RoPE | RoPE |
-| Main normalization | RMSNorm | RMSNorm, plus QK-Norm |
-| MLP | SwiGLU | SwiGLU |
-| Token embedding / output weights | Separate | Separate |
+### Architecture and parameter count
 
-### What changes from Llama 3 8B?
-
-- **QK-Norm:** Qwen3 applies an extra RMS normalization to each query and key head before attention. This controls the scale of Q/K vectors before their dot products. It is distinct from softmax, which turns the resulting attention scores into weights that sum to one.
-- **Same GQA arrangement:** 32 query heads share 8 key/value heads (four query heads per K/V head). Q output width is $32\times128=4{,}096$; K and V projection widths are each $8\times128=1{,}024$.
-- **Same MLP pattern, different width:** The SwiGLU gate and up projections each go from 4,096 to 12,288 dimensions, and the down projection returns to 4,096. The three projections have no bias in the published configuration.
-- **Longer context:** 32,768 tokens is the native pretraining length. Qwen documents 131,072 tokens with YaRN scaling; that extension requires the appropriate runtime configuration. The model's default configuration reserves 40,960 positions for typical prompt-plus-generation allocation, which is not a separate pretraining length.
-- **Separate unembedding:** The output projection is an independent trainable matrix, so the token embedding and unembedding are both counted below. RoPE itself has no learned position-embedding matrix.
+The grouped-query attention has query/output width $16\times128=2{,}048$ and K/V projection width $8\times128=1{,}024$. Each transformer block has separate Q, K, V, and output projections. Qwen3 also RMS-normalizes each query and key head before applying RoPE. The MLP uses three bias-free projections: gate and up project from 1,024 to 3,072; down projects back to 1,024. RoPE adds no learned position-embedding table.
 
 | Parameter group | Shape / calculation | Approximate count |
 | --- | --- | ---: |
-| Token embedding | $151{,}936\times4{,}096$ | 0.622B |
-| Q projection, all layers | $36\times(4{,}096\times4{,}096)$ | 0.604B |
-| K projection, all layers | $36\times(4{,}096\times1{,}024)$ | 0.151B |
-| V projection, all layers | Same as K | 0.151B |
-| Attention output projection, all layers | Same as Q | 0.604B |
-| MLP gate, up, and down, all layers | $3\times36\times(4{,}096\times12{,}288)$ | 5.436B |
-| Separate output projection | $4{,}096\times151{,}936$ | 0.622B |
-| Main RMSNorm + QK-Norm weights | $(2\times36+1)\times4{,}096+2\times36\times128$ | 0.00031B |
-| **Total from these dimensions** | | **8.191B** |
+| Token embedding / tied output | $151{,}936\times1{,}024$ | 155.58M |
+| Q projection, all layers | $28\times(1{,}024\times2{,}048)$ | 58.72M |
+| K projection, all layers | $28\times(1{,}024\times1{,}024)$ | 29.36M |
+| V projection, all layers | Same as K | 29.36M |
+| Attention output projection, all layers | Same as Q | 58.72M |
+| MLP gate, up, and down, all layers | $3\times28\times(1{,}024\times3{,}072)$ | 264.24M |
+| RMSNorm and QK-Norm weights | $(2\times28+1)\times1{,}024+2\times28\times128$ | 0.066M |
+| **Total unique parameters** | | **596.05M (about 0.6B)** |
 
-The tokenizer uses 151,669 token IDs in the technical report, while the embedding matrix has 151,936 slots in the published model configuration. The latter is the correct number for counting embedding and unembedding parameters. Qwen3-8B also supports *thinking* and *non-thinking* output modes through its chat template; these use the same model weights rather than two architectures.
+### Why is `model.safetensors` about 1.19 GB?
+
+The Hugging Face repository lists `model.safetensors` at about 1.19 GB. Qwen3-0.6B-Base has about 596 million unique parameters, and its config specifies bfloat16 weights (2 bytes each): $596.05\text{M}\times2\approx1.192$ GB (about 1.11 GiB), matching the file size. The input embedding and output projection are tied (`tie_word_embeddings: true`), so the shared $151{,}936\times1{,}024$ matrix is counted once. The file size is therefore consistent with the unique parameter count; small format metadata accounts for the slight difference. Runtime memory is higher because activations, temporary attention values, and the KV cache also occupy memory. [Base checkpoint files](https://huggingface.co/Qwen/Qwen3-0.6B-Base/tree/main)
+
+## Falcon3-1B-Base structure
+
+Falcon3-1B-Base is a **dense decoder-only transformer**. Its Hugging Face configuration uses the Llama causal language model architecture: 18 transformer layers, a 2,048-wide hidden state, and a 131,072-token vocabulary. The checkpoint name says 1B, but the configured dimensions yield about 1.669 billion parameters.
+
+| Feature | Falcon3-1B-Base |
+| --- | ---: |
+| Transformer blocks | 18 |
+| Model width $d_{\text{model}}$ | 2,048 |
+| Vocabulary slots | 131,072 |
+| Maximum configured context | 4,096 tokens |
+| Query heads | 8 |
+| Key/value heads | 4 each |
+| Head dimension | 256 |
+| MLP hidden width | 8,192 |
+| Position method | RoPE |
+| Normalization | RMSNorm |
+| MLP | SwiGLU |
+| Token embedding / output weights | Separate |
+
+### Architecture and parameter count
+
+Four query heads share each key/value head. Query and attention-output projection widths are $8\times256=2{,}048$; K and V projection widths are each $4\times256=1{,}024$. Every layer has an MLP with gate and up projections from 2,048 to 8,192 and a down projection from 8,192 to 2,048. The projections have no biases. Unlike Qwen3-0.6B-Base, Falcon3-1B-Base has separate token-embedding and output-projection matrices. RoPE adds no learned position-embedding matrix.
+
+| Parameter group | Shape / calculation | Approximate count |
+| --- | --- | ---: |
+| Token embedding | $131{,}072\times2{,}048$ | 268.44M |
+| Q projection, all layers | $18\times(2{,}048\times2{,}048)$ | 75.50M |
+| K projection, all layers | $18\times(2{,}048\times1{,}024)$ | 37.75M |
+| V projection, all layers | Same as K | 37.75M |
+| Attention output projection, all layers | Same as Q | 75.50M |
+| MLP gate, up, and down, all layers | $3\times18\times(2{,}048\times8{,}192)$ | 905.97M |
+| Separate output projection | $2{,}048\times131{,}072$ | 268.44M |
+| RMSNorm weights | $(2\times18+1)\times2{,}048$ | 0.076M |
+| **Total** | | **1,669.41M (about 1.67B)** |
+
+### Why is `model.safetensors` about 3.34 GB?
+
+The repository lists `model.safetensors` at about 3.34 GB. Falcon3-1B-Base has about 1.669 billion parameters, and its config specifies bfloat16 weights, which use 2 bytes per value. Thus $1{,}669.41\text{M}\times2\approx3.339$ GB (about 3.11 GiB), which matches the checkpoint size. Here the parameter count already includes the separate output projection, so the file-size comparison does not need a tied-weight duplicate to explain it. Small format metadata accounts for the remaining difference. [Model files](https://huggingface.co/tiiuae/Falcon3-1B-Base/tree/main)
 
 ## Softmax
 
@@ -178,4 +229,5 @@ For logits $x_1,\ldots,x_n$, $p_i=e^{x_i}/\sum_j e^{x_j}$. Each $p_i$ is positiv
 - [OpenAI's GPT-3 announcement](https://openai.com/index/language-models-are-few-shot-learners/) and [2020 API beta announcement](https://openai.com/index/openai-api/)
 - [GPT-2 paper, §2](https://cdn.openai.com/better-language-models/language-models.pdf) and [OpenAI GPT-2 reference code](https://github.com/openai/gpt-2/blob/master/src/model.py)
 - [Meta's Llama 3 release announcement](https://ai.meta.com/blog/meta-llama-3), [model card](https://github.com/meta-llama/llama3/blob/main/MODEL_CARD.md), and [reference implementation](https://github.com/meta-llama/llama3/blob/main/llama/model.py)
-- [Qwen3 release announcement](https://qwenlm.github.io/blog/qwen3/), [technical report](https://arxiv.org/pdf/2505.09388), [Qwen3-8B model card and configuration](https://huggingface.co/Qwen/Qwen3-8B), and [long-context documentation](https://github.com/QwenLM/Qwen3/blob/main/docs/source/inference/transformers.md)
+- [Falcon3-1B-Base model card, configuration, and checkpoint files](https://huggingface.co/tiiuae/Falcon3-1B-Base/tree/main) and [configuration JSON](https://huggingface.co/tiiuae/Falcon3-1B-Base/blob/main/config.json)
+- [Qwen3 release announcement](https://qwenlm.github.io/blog/qwen3/), [technical report](https://arxiv.org/pdf/2505.09388), [Qwen3-0.6B-Base model card and configuration](https://huggingface.co/Qwen/Qwen3-0.6B-Base), [Qwen3-0.6B-Base checkpoint files](https://huggingface.co/Qwen/Qwen3-0.6B-Base/tree/main), and [long-context documentation](https://github.com/QwenLM/Qwen3/blob/main/docs/source/inference/transformers.md)
