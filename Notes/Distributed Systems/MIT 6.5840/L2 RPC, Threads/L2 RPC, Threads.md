@@ -1,0 +1,38 @@
+# Threads
+- main tool to manage concurrency
+- separate pc, stack
+	- unlike single threaded execution
+- why use threads
+	- IO Concurrency
+		- multiple threads issuing RPC
+		- hide latency
+	- Parallelism
+		- each thread runs on each core of a multi-core machine
+	- Convenience
+		- run tasks every `x` secs
+- alternate
+	- event driven program
+		- single loop waiting for events
+		- lookup table for how to handle events
+		- cons: not easy to harness all cores of CPU
+		- pros: can be more efficient since no additional stack
+- challenges
+	- global & heap memory shared
+	- data race
+		- `sync.Mutex`
+	- coordination
+		- channels
+		- `sync.Cond`
+		- `sync.WaitGroup`
+	- deadlock
+# Go Tutorial
+- web crawler
+	- Considerations:
+		- convert cyclic graph to a tree
+		- parallelism
+		- know when crawler is done
+	- Implementations:
+		- Serial
+		- ConcurrentMutex
+		- ConcurrentChannel
+		- 

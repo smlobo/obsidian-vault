@@ -1,0 +1,43 @@
+# Implementation
+![[MapReduce Implementation.png]]
+- Master Data Structures
+	- each map & reduce task
+		- state: `(idle, in-progress, completed`
+		- identity of the worker machine
+- Fault Tolerance
+	- Worker Failures
+		- ping from master
+		- no response puts task back in `idle` for re-execution
+	- Master Failure
+		- write periodic checkpoints
+	- Semantics in the presence of failures
+		- rely on the user supplied `map` & `reduce` being deterministic
+		- atomic commits of task outputs
+- Locality
+	- conserve scarce network bandwidth by `map` tasks reading (best effort) & writing data locally
+- Task Granularity
+	- map -> `M` pieces
+	- reduce -> `R` pieces
+	- ideally these are much larger than the number of workers
+	- master needs to be able to:
+		- make `O(M+R)` scheduling decisions
+		- keep `O(M*R)` state in memory
+- Stragglers
+	- create backup tasks (speculative execution) for stragglers
+
+# Refinements
+- Map
+	- optional `Combiner` function often same as the `Reduce` if the `Map` results are too large
+		- Example: word count of `<the, 1>`
+		- effectively partial reducing (combining)
+- Reduce
+	- optional partitioning function instead of the default `hash(key) mod R`
+		- Example: URLs partitioned by host: `hash(Hostname(urlkey)) mod R`
+- Other
+	- user responsible for side-effects
+		- needs to be atomic & idempotent
+		- like multiple files from map and/or reduce
+	- skips bad records with a signal handler
+	- sequential local execution for debugging
+	- master has a status page
+	- users can insert counters for various sanity tasks
